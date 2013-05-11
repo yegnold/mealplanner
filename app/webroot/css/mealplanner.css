@@ -1,0 +1,13 @@
+@charset "utf-8";
+
+#left {
+    width:20%;
+    float:left;
+    border-right:1px solid palegoldenrod;
+    margin-right:9%;
+}
+
+#main {
+    float:left;
+    width:70%;
+}

@@ -9,6 +9,7 @@
 		echo $this->Html->meta('icon');
         
 		echo $this->Html->css('cake.generic');
+        echo $this->Html->css('mealplanner');
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
