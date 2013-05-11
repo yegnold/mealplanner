@@ -11,7 +11,7 @@ class PlannerController extends AppController {
 	public $name = 'Planner';
 
 
-	public $uses = array('Meal', 'Participant');
+	public $uses = array('Meal', 'Participant', 'ScheduledMeal');
 
     protected function getDaysForView($from_date, $num_days = 7) {
         $start_date_timestamp = strtotime($from_date);
@@ -23,13 +23,30 @@ class PlannerController extends AppController {
         return $return_days_array;
     }
     
+    protected function setAllParticipantsForView() {
+         $all_participants = $this->Participant->find('all');
+         $this->set('participants', $all_participants);
+         return $all_participants;
+    }
+    
+    protected function setDefaultMealListForView() {
+         $this->set('default_meal_list', $this->Meal->find('all', array('order' => 'Meal.name ASC')));
+    }
+    
     public function index($from_date = null) {
         if($from_date === null) {
             $from_date = date('Y-m-d');
         }
-        $days_for_view = $this->getDaysForView($from_date, 7);
         
+        $days_for_view = $this->getDaysForView($from_date, 7);
         $this->set('days', $days_for_view);
-        $this->set('participants', $this->Participant->find('all'));
+        
+		$participants = $this->setAllParticipantsForView();
+		
+		$view_organised_meals = $this->ScheduledMeal->findOrganisedByDaysandParticipants($days_for_view, $participants);
+		$this->set('scheduled_meals', $view_organised_meals);
+
+		$this->setDefaultMealListForView();
+       
     }
 }

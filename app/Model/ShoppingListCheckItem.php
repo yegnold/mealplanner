@@ -9,6 +9,7 @@ App::uses('AppModel', 'Model');
  */
 class ShoppingListCheckItem extends AppModel {
     public $name = 'ShoppingListCheckItem';
+	public $order = 'ShoppingListCheckItem.name ASC';
     public $hasAndBelongsToMany = array(
         'Meal' => array(
             'className'              => 'Meal',

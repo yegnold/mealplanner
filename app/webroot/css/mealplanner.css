@@ -11,3 +11,18 @@
     float:left;
     width:70%;
 }
+
+.meal {
+	display:block;
+	clear:left;
+	padding:5px;
+	border:1px solid #333;
+	background-color:#efefef;
+	margin:0 0 2px 0;
+	width:150px;
+}
+
+.disabled-meal {
+	border:1px dotted #333;
+	text-align:center;
+}

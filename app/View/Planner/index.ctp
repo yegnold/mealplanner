@@ -1,10 +1,9 @@
 <div id="left">
     <h2>Meals</h2>
-    <ul>
-        <li>Meals listed here</li>
-        <li>Meals listed here</li>
-        <li>Meals listed here</li>
-        <li>Meals listed here</li>
+    <ul id="meal-list">
+        <?php foreach($default_meal_list as $meal) { ?>
+        <li class="meal plannable-meal" id="meal-<?php echo $meal['Meal']['id']; ?>"><?php echo h($meal['Meal']['name']); ?></li>
+    <?php } ?>
     </ul>
 </div>
 
@@ -28,7 +27,16 @@
             </th>
             <?php foreach($days as $date) { ?>
             <td>
-                Meal
+                <?php
+				if(array_key_exists($date, $scheduled_meals) 
+						&& array_key_exists($participant['Participant']['id'], $scheduled_meals[$date])
+						&& array_key_exists('L', $scheduled_meals[$date][$participant['Participant']['id']])
+						&& count($scheduled_meals[$date][$participant['Participant']['id']]['L'])) {
+						foreach($scheduled_meals[$date][$participant['Participant']['id']]['L'] as $scheduled_meal) {
+							echo $this->element('Planner/scheduled_meal', array('scheduled_meal' => $scheduled_meal));
+						}
+				}
+				?>
             </td>
             <?php } ?>
         </tr>
@@ -43,7 +51,17 @@
             </th>
             <?php foreach($days as $date) { ?>
             <td>
-                Meal
+                <?php
+				if(array_key_exists($date, $scheduled_meals) 
+						&& array_key_exists($participant['Participant']['id'], $scheduled_meals[$date])
+						&& array_key_exists('D', $scheduled_meals[$date][$participant['Participant']['id']])
+						&& count($scheduled_meals[$date][$participant['Participant']['id']]['D'])) {
+						
+						foreach($scheduled_meals[$date][$participant['Participant']['id']]['D'] as $scheduled_meal) {
+							echo $this->element('Planner/scheduled_meal', array('scheduled_meal' => $scheduled_meal));
+						}
+				}
+				?>
             </td>
             <?php } ?>
         </tr>
