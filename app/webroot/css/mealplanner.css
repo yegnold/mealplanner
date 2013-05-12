@@ -30,3 +30,8 @@
 .use-list {
 	font-size:10px;
 }
+
+.shopping-list {
+	width:45%;
+	float:left;
+}

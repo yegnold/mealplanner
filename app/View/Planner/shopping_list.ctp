@@ -5,7 +5,7 @@
 <div id="main">
 	<?php if(!empty($shopping_list)) { ?>
 	<h2>Generated Shopping List</h2>
-	<p>
+	<p class="small-print-intro">
 		Covering dates:
 		<?php
 		$dates_for_display = array();
@@ -15,9 +15,11 @@
 		echo implode(', ', $dates_for_display);
 		?>
 	</p>
-	<p><a href="<?php echo $this->Html->url(array('action' => 'index')); ?>">go back to planner</a></p>
-	<ul>
-		<?php foreach($shopping_list as $shopping_list_item) { 
+	<p class="small-print-intro"><a href="<?php echo $this->Html->url(array('action' => 'index')); ?>">go back to planner</a></p>
+	<?php $shopping_list_halved = array_chunk($shopping_list, ceil(count($shopping_list)/2), true); ?>
+	<?php foreach($shopping_list_halved as $half_shopping_list)  { ?>
+	<ul class="shopping-list">
+		<?php foreach($half_shopping_list as $shopping_list_item) { 
 			?>
 		<li><?php echo h($shopping_list_item['name']); ?> 
 			<br />
@@ -35,5 +37,6 @@
 			<?php
 		} ?>
 	</ul>
+	<?php } ?>
 	<?php } ?>
 </div>

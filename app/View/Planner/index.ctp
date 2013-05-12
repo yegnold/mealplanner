@@ -9,7 +9,7 @@
 
 <div id="main">
 	<form method="post" action="<?php echo $this->Html->url(array('action' => 'shopping_list')); ?>">
-    <table>
+    <table id="planner-table">
         <tr>
             <th></th>
             <?php foreach($days as $d_k => $date) { ?>

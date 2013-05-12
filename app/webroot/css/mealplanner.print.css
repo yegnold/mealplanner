@@ -1,0 +1,54 @@
+#content {
+	width:100%;
+}
+
+
+#left {
+	display:none;
+}
+
+input {
+	display:none !important;
+}
+
+#header {
+	display:none;
+}
+#footer {
+	display:none;
+}
+
+#main {
+	width:100%;
+	float:none;
+}
+.cake-sql-log {
+	display:none;
+}
+
+
+.meal {
+	width:auto;
+	margin:1px;
+}
+
+#planner-table {
+	width:100%;
+}
+#planner-table td, #planner-table th{
+	width:13%;
+	padding:2px;
+}
+
+.small-print-intro {
+	font-size:80%;
+}
+.small-print-intro a {
+	display:none;
+}
+.shopping-list {
+	font-size:80%;
+}
+.use-list {
+	font-size:8px;
+}

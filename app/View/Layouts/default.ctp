@@ -10,6 +10,7 @@
         
 		echo $this->Html->css('cake.generic');
         echo $this->Html->css('mealplanner');
+		echo $this->Html->css('mealplanner.print', null, array('media' => 'print'));
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
