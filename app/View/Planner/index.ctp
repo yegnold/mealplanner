@@ -8,31 +8,33 @@
 </div>
 
 <div id="main">
+	<form method="post" action="<?php echo $this->Html->url(array('action' => 'shopping_list')); ?>">
     <table>
         <tr>
             <th></th>
-            <?php foreach($days as $date) { ?>
+            <?php foreach($days as $d_k => $date) { ?>
             <th>
-                <?php echo $this->Time->format('D j F', $date); ?>
+                <label for="date_checkbox_<?php echo $d_k; ?>"><?php echo $this->Time->format('D j F', $date); ?></label>
+				<input type="checkbox" id="date_checkbox_<?php echo $d_k; ?>" name="data[generate_shopping_list_dates][]" value="<?php echo h($date); ?>" <?php if(!empty($this->data['generate_shopping_list_dates']) && in_array($date, $this->data['generate_shopping_list_dates'])) { ?> checked="checked"<?php } ?> />
             </th>
             <?php } ?>
         </tr>
         <tr>
             <td colspan="<?php echo count($days) + 1; ?>">&nbsp;</td>
         </tr>
-        <?php foreach($participants as $participant) { ?>
+        <?php foreach($participants as $participant_id => $participant) { ?>
         <tr>
-            <th>
-                Lunch - <?php echo h($participant['Participant']['name']); ?>
+            <th class="row-heading">
+                Lunch - <?php echo h($participant); ?>
             </th>
             <?php foreach($days as $date) { ?>
             <td>
                 <?php
 				if(array_key_exists($date, $scheduled_meals) 
-						&& array_key_exists($participant['Participant']['id'], $scheduled_meals[$date])
-						&& array_key_exists('L', $scheduled_meals[$date][$participant['Participant']['id']])
-						&& count($scheduled_meals[$date][$participant['Participant']['id']]['L'])) {
-						foreach($scheduled_meals[$date][$participant['Participant']['id']]['L'] as $scheduled_meal) {
+						&& array_key_exists($participant_id, $scheduled_meals[$date])
+						&& array_key_exists('L', $scheduled_meals[$date][$participant_id])
+						&& count($scheduled_meals[$date][$participant_id]['L'])) {
+						foreach($scheduled_meals[$date][$participant_id]['L'] as $scheduled_meal) {
 							echo $this->element('Planner/scheduled_meal', array('scheduled_meal' => $scheduled_meal));
 						}
 				}
@@ -44,20 +46,20 @@
         <tr>
             <td colspan="<?php echo count($days) + 1; ?>">&nbsp;</td>
         </tr>
-        <?php foreach($participants as $participant) { ?>
+        <?php foreach($participants as $participant_id => $participant) { ?>
         <tr>
-            <th>
-                Dinner - <?php echo h($participant['Participant']['name']); ?>
+            <th class="row-heading">
+                Dinner - <?php echo h($participant); ?>
             </th>
             <?php foreach($days as $date) { ?>
             <td>
                 <?php
 				if(array_key_exists($date, $scheduled_meals) 
-						&& array_key_exists($participant['Participant']['id'], $scheduled_meals[$date])
-						&& array_key_exists('D', $scheduled_meals[$date][$participant['Participant']['id']])
-						&& count($scheduled_meals[$date][$participant['Participant']['id']]['D'])) {
+						&& array_key_exists($participant_id, $scheduled_meals[$date])
+						&& array_key_exists('D', $scheduled_meals[$date][$participant_id])
+						&& count($scheduled_meals[$date][$participant_id]['D'])) {
 						
-						foreach($scheduled_meals[$date][$participant['Participant']['id']]['D'] as $scheduled_meal) {
+						foreach($scheduled_meals[$date][$participant_id]['D'] as $scheduled_meal) {
 							echo $this->element('Planner/scheduled_meal', array('scheduled_meal' => $scheduled_meal));
 						}
 				}
@@ -67,4 +69,10 @@
         </tr>
         <?php } ?>
     </table>
+	<p>
+		<input type="submit" value="Show Shopping List for Selected Days" />
+	</p>
+	</form>
+	
+	
 </div>

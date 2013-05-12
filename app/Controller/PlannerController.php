@@ -24,7 +24,7 @@ class PlannerController extends AppController {
     }
     
     protected function setAllParticipantsForView() {
-         $all_participants = $this->Participant->find('all');
+         $all_participants = $this->Participant->find('list');
          $this->set('participants', $all_participants);
          return $all_participants;
     }
@@ -49,4 +49,13 @@ class PlannerController extends AppController {
 		$this->setDefaultMealListForView();
        
     }
+	
+	public function shopping_list() {
+		$participants = $this->setAllParticipantsForView();
+		
+		if(!empty($this->data) && array_key_exists('generate_shopping_list_dates', $this->data)) {
+			$shopping_list = $this->ScheduledMeal->generateShoppingListForDateList($participants, $this->data['generate_shopping_list_dates']);
+			$this->set('shopping_list', $shopping_list);
+		}
+	}
 }
