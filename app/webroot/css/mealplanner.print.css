@@ -52,3 +52,7 @@ input {
 .use-list {
 	font-size:8px;
 }
+
+#bin {
+	display:none;
+}

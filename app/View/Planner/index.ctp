@@ -1,8 +1,13 @@
+<?php
+// <script data-main="scripts/main" src="js/require-min.js"></script>
+$this->Html->script('require-min', array('inline' => false, 'data-main' => $this->Html->url('/js/main.js')));
+?>
+
 <div id="left">
     <h2>Meals</h2>
     <ul id="meal-list">
         <?php foreach($default_meal_list as $meal) { ?>
-        <li class="meal plannable-meal" id="meal-<?php echo $meal['Meal']['id']; ?>"><?php echo h($meal['Meal']['name']); ?></li>
+        <li draggable="true" class="meal plannable-meal" id="meal-<?php echo $meal['Meal']['id']; ?>"><?php echo h($meal['Meal']['name']); ?></li>
     <?php } ?>
     </ul>
 </div>
@@ -69,6 +74,11 @@
         </tr>
         <?php } ?>
     </table>
+		
+	<div id="bin">
+		<br />
+		Drag meals here to cancel
+	</div>
 	<p>
 		<input type="submit" value="Show Shopping List for Selected Days" />
 	</p>
