@@ -33,7 +33,7 @@ $this->Html->script('require-min', array('inline' => false, 'data-main' => $this
                 Lunch - <?php echo h($participant); ?>
             </th>
             <?php foreach($days as $date) { ?>
-            <td class="slot" data-date="<?php echo $date; ?>" data-participant="<?php echo $participant_id; ?>" data-meal="L">
+            <td class="slot" data-date="<?php echo $date; ?>" data-participant_id="<?php echo $participant_id; ?>" data-meal_type="L">
                 <?php
 				if(array_key_exists($date, $scheduled_meals) 
 						&& array_key_exists($participant_id, $scheduled_meals[$date])
@@ -57,7 +57,7 @@ $this->Html->script('require-min', array('inline' => false, 'data-main' => $this
                 Dinner - <?php echo h($participant); ?>
             </th>
             <?php foreach($days as $date) { ?>
-            <td class="slot" data-date="<?php echo $date; ?>" data-participant="<?php echo $participant_id; ?>" data-meal="D">
+            <td class="slot" data-date="<?php echo $date; ?>" data-participant_id="<?php echo $participant_id; ?>" data-meal_type="D">
                 <?php
 				if(array_key_exists($date, $scheduled_meals) 
 						&& array_key_exists($participant_id, $scheduled_meals[$date])

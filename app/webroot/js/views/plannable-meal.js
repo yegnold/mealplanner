@@ -27,7 +27,7 @@ define([
 		},
 		handleDragStart: function(e) {
 			e.originalEvent.dataTransfer.effectAllowed = 'copy';
-			e.originalEvent.dataTransfer.setData('text/plain', this.model.get('id'));
+			e.originalEvent.dataTransfer.setData('text/plain', 'PlannableMeal:'+this.model.get('id'));
 			return true;
 		},
 		handleDragOver: function(e) {
