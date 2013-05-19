@@ -8,11 +8,12 @@ define([
 				name: "- -"
 			}
 		},
-		
+		/**
+		 *  Set up this model based on an existing dom element.
+		 */
 		fromDomElement: function(elem) {
-			console.log('Todo: Set up the instance based on HTML properties of elem.');
-			this.set('id', 0);
-			this.set('name', '');
+			this.set('id', elem.getAttribute('data-id'));
+			this.set('name', elem.getAttribute('data-name'));
 			return this;
 		}
 	});

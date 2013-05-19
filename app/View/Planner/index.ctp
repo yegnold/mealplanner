@@ -7,7 +7,7 @@ $this->Html->script('require-min', array('inline' => false, 'data-main' => $this
     <h2>Meals</h2>
     <ul id="meal-list">
         <?php foreach($default_meal_list as $meal) { ?>
-        <li draggable="true" class="meal plannable-meal" id="meal-<?php echo $meal['Meal']['id']; ?>"><?php echo h($meal['Meal']['name']); ?></li>
+        <li draggable="true" class="meal plannable-meal" id="plannable-meal-<?php echo $meal['Meal']['id']; ?>" data-id="<?php echo $meal['Meal']['id']; ?>" data-name="<?php echo h($meal['Meal']['name']); ?>"><?php echo h($meal['Meal']['name']); ?></li>
     <?php } ?>
     </ul>
 </div>
@@ -33,7 +33,7 @@ $this->Html->script('require-min', array('inline' => false, 'data-main' => $this
                 Lunch - <?php echo h($participant); ?>
             </th>
             <?php foreach($days as $date) { ?>
-            <td>
+            <td class="slot" data-date="<?php echo $date; ?>" data-participant="<?php echo $participant_id; ?>" data-meal="L">
                 <?php
 				if(array_key_exists($date, $scheduled_meals) 
 						&& array_key_exists($participant_id, $scheduled_meals[$date])
@@ -57,7 +57,7 @@ $this->Html->script('require-min', array('inline' => false, 'data-main' => $this
                 Dinner - <?php echo h($participant); ?>
             </th>
             <?php foreach($days as $date) { ?>
-            <td>
+            <td class="slot" data-date="<?php echo $date; ?>" data-participant="<?php echo $participant_id; ?>" data-meal="D">
                 <?php
 				if(array_key_exists($date, $scheduled_meals) 
 						&& array_key_exists($participant_id, $scheduled_meals[$date])
