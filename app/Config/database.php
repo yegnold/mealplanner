@@ -55,7 +55,7 @@
  */
 class DATABASE_CONFIG {
 
-	public $default = array(
+	public $twixcoding = array(
 		'datasource' => 'Database/Mysql',
 		'persistent' => false,
 		'host' => 'localhost',
@@ -76,4 +76,20 @@ class DATABASE_CONFIG {
 		'prefix' => '',
 		//'encoding' => 'utf8',
 	);
+	public $default = array(
+		'datasource' => 'Database/Mysql',
+		'persistent' => false,
+		'host' => 'localhost',
+		'login' => 'twixcodi_meals',
+		'password' => 'm3@lpl@nn3r',
+		'database' => 'twixcodi_mealplanner',
+		'prefix' => '',
+		'encoding' => 'utf8',
+		);
+	
+	public function __construct() {
+		if(env('SERVER_NAME') == 'local.twixcoding.com') {
+			$this->default = $this->twixcoding;
+		}
+	}
 }
