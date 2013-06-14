@@ -3,11 +3,30 @@ define([
 ], function(Backbone){
 	
 	var initialize = function() {
-		require(['models/plannable-meal', 'collections/plannable-meals', 'views/plannable-meal', 'views/slot'], function(PlannableMeal, PlannableMeals, PlannableMealLi, SlotTd) {
+		require([
+					'models/plannable-meal',
+					'collections/plannable-meals',
+					'views/plannable-meal',
+					'views/slot',
+					'models/scheduled-meal',
+					'views/scheduled-meal',
+					'views/bin'
+				],
+				function(
+					PlannableMeal,
+					PlannableMeals,
+					PlannableMealLi,
+					SlotTd,
+					ScheduledMeal,
+					ScheduledMealSpan,
+					Bin
+				) {
 			
 			var plannable_meal_models = [];
 			var plannable_meal_views = [];
 			var slot_views = [];
+			var scheduled_meal_models = [];
+			var scheduled_meal_views = [];
 			
 			/**
 			 * Function to create a plannableMeal model and a plannable meal view for
@@ -40,6 +59,27 @@ define([
 			
 			// The meals are droppable on to '.slot' tds
 			_.each(document.querySelectorAll('.slot'), slotFromDOMFactory);
+			
+			/**
+			 * Utility function to set up backbone views for scheduled meals
+			 * Dragging a scheduled meal on to the bin will delete it.
+			 */
+			function scheduledMealFromDOMFactory(element) {
+				var scheduled_meal_model = new ScheduledMeal;
+				scheduled_meal_model.fromDomElement(element);
+				scheduled_meal_models.push(scheduled_meal_model);
+				
+				var scheduled_meal_span = new ScheduledMealSpan({model: scheduled_meal_model});
+				scheduled_meal_span.setElement(element);
+				scheduled_meal_views.push(scheduled_meal_span);
+			}
+			
+			// The scheduled meals are droppable on to '.bin'
+			_.each(document.querySelectorAll('.scheduled-meal'), scheduledMealFromDOMFactory);
+			
+			var bin = new Bin;
+			bin.setElement(document.getElementById('bin'));
+		
 		});
 	}
 	return {

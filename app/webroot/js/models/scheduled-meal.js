@@ -3,7 +3,7 @@ define([
 ], function(Backbone){
 	var ScheduledMeal = Backbone.Model.extend({
 		// TODO: Need to make URL proper innit bruv
-		url: '../scheduled_meals.json',
+		urlRoot: '../scheduled_meals',
 		defaults: function(){
 			return {
 				id: null,
@@ -18,11 +18,15 @@ define([
 		 *  Set up this model based on an existing dom element.
 		 */
 		fromDomElement: function(elem) {
-			console.log('TODO: Need to set ScheduledMeal up based on DOM element');
-			//this.set('id', elem.getAttribute('data-id'));
-			//this.set('name', elem.getAttribute('data-name'));
+			this.set('id', elem.getAttribute('data-id'));
+			this.set('participant_id', elem.getAttribute('data-participant_id'));
+			this.set('is_disabled', elem.getAttribute('data-is_disabled'));
+			this.set('meal_type', elem.getAttribute('data-meal_type'));
+			this.set('meal_id', elem.getAttribute('data-meal_id'));
+			this.set('date', elem.getAttribute('data-date'));
 			return this;
 		}
+	
 	});
 	// Return the model for the module
 	return ScheduledMeal;

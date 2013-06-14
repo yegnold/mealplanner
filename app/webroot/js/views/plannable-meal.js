@@ -7,7 +7,6 @@ define([
 	var PlannableMealLi = Backbone.View.extend({
 
 		tagName: "li",
-		id: function() { return 'plannable-meal-' + this.model.id; },
 		className: "meal plannable-meal",
 		events: {
 			'dragstart': 'handleDragStart',
@@ -19,7 +18,7 @@ define([
 			this.listenTo(this.model, "change", this.render);
 		},
 		render: function() {
-			this.$el.attr('id',this.id);
+			this.$el.attr('id','plannable-meal-' + this.model.id);
 			this.$el.attr('data-id', this.model.get('id'));
 			this.$el.attr('data-name', this.model.get('name'));
 			this.$el.html(Mustache.to_html(PlannableMealLiTemplate, this.model.toJSON()));

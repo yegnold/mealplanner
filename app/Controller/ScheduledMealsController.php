@@ -26,9 +26,12 @@ class ScheduledMealsController extends AppController {
         } else {
             $message = 'Error';
         }
+        $scheduled_meal = $this->ScheduledMeal->findById($this->ScheduledMeal->id);
         $this->set(array(
             'message' => $message,
-            '_serialize' => array('message')
+            'name' => $scheduled_meal['Meal']['name'],
+            'id' => $this->ScheduledMeal->id,
+            '_serialize' => array('message', 'id', 'name')
         ));
     }
 

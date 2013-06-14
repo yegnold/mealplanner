@@ -1,7 +1,8 @@
 define([
   'backbone',
-  'models/scheduled-meal'
-], function(Backbone, ScheduledMeal){
+  'models/scheduled-meal',
+  'views/scheduled-meal'
+], function(Backbone, ScheduledMeal, ScheduledMealView){
 	/**
 	*  This view represents a slot, on to which meals can be planned
 	*/
@@ -37,6 +38,7 @@ define([
 		 * In this case we want to create a new instance of the ScheduledMeal model.
 		 */
 		handleDrop: function(e) {
+			var td_element = this;
 			if (e.stopPropagation) {
 				e.stopPropagation(); // stops the browser from redirecting.
 			}
@@ -55,7 +57,16 @@ define([
 				// Pull out the dropped meal ID from the dataTransfer data.
 				var dropped_meal_parts = transfer_data.match(/PlannableMeal:([0-9]+)$/);
 				new_scheduled_meal.set('meal_id', parseInt(dropped_meal_parts[1]));
-				console.log(new_scheduled_meal.save());
+				new_scheduled_meal.save(
+					{},
+					{
+						success: function(model, response, options) {
+							var view = new ScheduledMealView({model: model});
+							model.set('name', response.name);
+							td_element.$el.append(view.render().el);
+						}
+					}
+					);
 			}
 			
 		}

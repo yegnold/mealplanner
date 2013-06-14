@@ -75,7 +75,7 @@ $this->Html->script('require-min', array('inline' => false, 'data-main' => $this
         <?php } ?>
     </table>
 		
-	<div id="bin">
+	<div id="bin" class="bin">
 		<br />
 		Drag meals here to cancel
 	</div>
