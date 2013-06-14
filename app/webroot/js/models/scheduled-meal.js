@@ -3,16 +3,15 @@ define([
 ], function(Backbone){
 	var ScheduledMeal = Backbone.Model.extend({
 		// TODO: Need to make URL proper innit bruv
-		url: 'scheduled_meals/ajax',
+		url: '../scheduled_meals.json',
 		defaults: function(){
 			return {
-				id: 0,
+				id: null,
 				date: '1970-01-01',
 				meal_id: 0,
 				meal_type: 'L',
 				participant_id: 0,
 				is_disabled: 0,
-				name: ''
 			}
 		},
 		/**

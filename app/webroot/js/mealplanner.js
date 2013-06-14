@@ -10,6 +10,8 @@ define([
 			var slot_views = [];
 			
 			/**
+			 * Function to create a plannableMeal model and a plannable meal view for
+			 * a dom element representing a plannable meal 
 			 * Wonder if this should be done using PlannableMeals collection?
 			 */
 			function plannableMealFromDOMFactory(element) {
