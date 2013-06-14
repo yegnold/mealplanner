@@ -84,7 +84,15 @@ h5, h6 {
     width:20vw;
     float:left;
     border-right:1px solid #D6EFDE;
-    margin-right:9%;
+    margin-right:3%;
+}
+#left a {
+	display:block;
+	margin:5px 0;
+	padding:5px;
+	border:1px solid green;
+	background-color:#D6EFDE;
+	width:80%;
 }
 
 #main {
@@ -113,26 +121,30 @@ h5, h6 {
 	font-size:10px;
 }
 
-.shopping-list {
-	width:45%;
-	float:left;
+form {
+	display:block;
+	position:relative;
+	overflow:hidden;
 }
 
-#bin {
-	margin-top:20px;
-	background-color:#F0D3D3;
-	color:#333;
-	float:right;
-	width:200px;
-	height:50px;
-	text-align:center;
+.arrow {
+	display:block;
+	float:left;
+	width:4%;
+	margin:150px 0 0;
+	padding:20px 0;
+	text-align: center;
+	font-weight:bold;
+	background-color:#efefef;
 }
-#bin.active {
-	background-color:#b22222;
-	color:#fff;
+.arrow:hover {
+	background-color:#D6EFDE;
 }
+
 table {
-	width:100%;
+	float:left;
+	width:90%;
+	margin:0 1%;
 	border-collapse: collapse;
 }
 th,td.spacer {
@@ -148,6 +160,9 @@ th input[type=checkbox] {
 	clear:left;
 	margin:5px auto 0;
 }
+th.today,  td.today {
+	background-color:#E1F0FF;
+}
 td.active {
 	background-color:#D6EFDE;
 }
@@ -156,4 +171,24 @@ input[type=submit] {
 	font-size:9px;
 	text-wrap:normal;
 	overflow: hidden;
+}
+
+
+#bin {
+	margin-top:20px;
+	margin-right:4%;
+	background-color:#F0D3D3;
+	color:#333;
+	float:right;
+	width:200px;
+	height:50px;
+	text-align:center;
+}
+#bin.active {
+	background-color:#b22222;
+	color:#fff;
+}
+.shopping-list {
+	width:45%;
+	float:left;
 }

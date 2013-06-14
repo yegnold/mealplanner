@@ -38,6 +38,10 @@ class PlannerController extends AppController {
             $from_date = date('Y-m-d');
         }
         
+		$from_date_timestamp = strtotime($from_date);
+		$this->set('previous_day', date('Y-m-d', $from_date_timestamp - (3600 * 24)));
+		$this->set('next_day', date('Y-m-d', $from_date_timestamp + (3600 * 24)));
+		
         $days_for_view = $this->getDaysForView($from_date, 7);
         $this->set('days', $days_for_view);
         
