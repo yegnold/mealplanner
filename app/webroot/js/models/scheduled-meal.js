@@ -3,7 +3,7 @@ define([
 ], function(Backbone){
 	var ScheduledMeal = Backbone.Model.extend({
 		// TODO: Need to make URL proper innit bruv
-		urlRoot: '../scheduled_meals',
+		urlRoot: document.getElementById('planner-table').getAttribute('data-scheduled_meals_path'),
 		defaults: function(){
 			return {
 				id: null,

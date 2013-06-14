@@ -12,6 +12,7 @@ define([
 		className: "slot",
 		events: {
 			'dragover'	: 'handleDragOver',
+			'dragleave' : 'handleDragLeave',
 			'drop'		: 'handleDrop'
 		},
 		initialize: function() {
@@ -27,11 +28,15 @@ define([
 		handleDragOver: function(e) {
 			var transfer_data = e.originalEvent.dataTransfer.getData('text/plain');
 			if(transfer_data.match(/PlannableMeal/)) {
+				this.$el.addClass('active');
 				e.preventDefault();
 				return false;
 			}
 			return true;
 			
+		},
+		handleDragLeave: function(e) {
+			this.$el.removeClass('active');
 		},
 		/**
 		 * Handle the drop of a PlannableMeal instance on to this slot.
@@ -49,6 +54,7 @@ define([
 			// The dataTransfer object contains the model name and ID of the dragged element.
 			var transfer_data = e.originalEvent.dataTransfer.getData('text/plain');
 			if(transfer_data.match(/PlannableMeal:([0-9]+)$/)) {
+				this.$el.removeClass('active');
 				var new_scheduled_meal = new ScheduledMeal;
 				new_scheduled_meal.set('meal_type', e.target.getAttribute('data-meal_type'));
 				new_scheduled_meal.set('participant_id', parseInt(e.target.getAttribute('data-participant_id')));

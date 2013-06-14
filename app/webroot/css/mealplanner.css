@@ -1,26 +1,107 @@
 @charset "utf-8";
 
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+body {
+	font-family: 'Ruda', sans-serif;
+	font-size:13px;
+}
+
+h1 {
+	font-size:24px;
+	margin:12px 0;
+}
+h2 {
+	font-size:20px;
+	margin:10px 0;
+}
+h3 {
+	font-size:16px;
+	margin:8px 0;
+}
+h4 {
+	font-size:14px;
+	margin:7px 0;
+}
+h5, h6 {
+	font-size:12px;
+	margin:6px 0;
+}
+
+#container {
+	margin:0 5vw;
+}
 #left {
-    width:20%;
+    width:20vw;
     float:left;
-    border-right:1px solid palegoldenrod;
+    border-right:1px solid #D6EFDE;
     margin-right:9%;
 }
 
 #main {
     float:left;
-    width:70%;
+    width:55vw;
 }
 
 .meal {
 	display:block;
 	clear:left;
 	padding:5px;
-	border:1px solid #333;
+	border:1px solid #999;
 	background-color:#efefef;
 	margin:0 0 2px 0;
-	width:150px;
+	width:80%;
 	cursor:move;
+	margin:5px 0;
 }
 
 .disabled-meal {
@@ -38,12 +119,41 @@
 }
 
 #bin {
-	margin-top:50px;
-	border:1px dotted #666;
-	border-top:none;
-	background-color:#efefef;
+	margin-top:20px;
+	background-color:#F0D3D3;
+	color:#333;
 	float:right;
 	width:200px;
 	height:50px;
 	text-align:center;
+}
+#bin.active {
+	background-color:#b22222;
+	color:#fff;
+}
+table {
+	width:100%;
+	border-collapse: collapse;
+}
+th,td.spacer {
+	background-color:#efefef;
+}
+th, td {
+	border:1px solid #efefef;
+	width:10%;
+	padding:1%;
+}
+th input[type=checkbox] {
+	display:block;
+	clear:left;
+	margin:5px auto 0;
+}
+td.active {
+	background-color:#D6EFDE;
+}
+
+input[type=submit] {
+	font-size:9px;
+	text-wrap:normal;
+	overflow: hidden;
 }

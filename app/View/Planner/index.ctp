@@ -4,7 +4,7 @@ $this->Html->script('require-min', array('inline' => false, 'data-main' => $this
 ?>
 
 <div id="left">
-    <h2>Meals</h2>
+    <h2>Available Meals</h2>
     <ul id="meal-list">
         <?php foreach($default_meal_list as $meal) { ?>
         <li draggable="true" class="meal plannable-meal" id="plannable-meal-<?php echo $meal['Meal']['id']; ?>" data-id="<?php echo $meal['Meal']['id']; ?>" data-name="<?php echo h($meal['Meal']['name']); ?>"><?php echo h($meal['Meal']['name']); ?></li>
@@ -13,10 +13,11 @@ $this->Html->script('require-min', array('inline' => false, 'data-main' => $this
 </div>
 
 <div id="main">
+	<h2>Planned Meals</h2>
 	<form method="post" action="<?php echo $this->Html->url(array('action' => 'shopping_list')); ?>">
-    <table id="planner-table">
+    <table id="planner-table" data-scheduled_meals_path="<?php echo $this->Html->url(array('controller' => 'scheduled_meals')); ?>">
         <tr>
-            <th></th>
+            <th><input type="submit" value="Shopping List For:" /></th>
             <?php foreach($days as $d_k => $date) { ?>
             <th>
                 <label for="date_checkbox_<?php echo $d_k; ?>"><?php echo $this->Time->format('D j F', $date); ?></label>
@@ -25,7 +26,7 @@ $this->Html->script('require-min', array('inline' => false, 'data-main' => $this
             <?php } ?>
         </tr>
         <tr>
-            <td colspan="<?php echo count($days) + 1; ?>">&nbsp;</td>
+            <td colspan="<?php echo count($days) + 1; ?>" class="spacer">&nbsp;</td>
         </tr>
         <?php foreach($participants as $participant_id => $participant) { ?>
         <tr>
@@ -49,7 +50,7 @@ $this->Html->script('require-min', array('inline' => false, 'data-main' => $this
         </tr>
         <?php } ?>
         <tr>
-            <td colspan="<?php echo count($days) + 1; ?>">&nbsp;</td>
+            <td colspan="<?php echo count($days) + 1; ?>" class="spacer">&nbsp;</td>
         </tr>
         <?php foreach($participants as $participant_id => $participant) { ?>
         <tr>
@@ -73,15 +74,16 @@ $this->Html->script('require-min', array('inline' => false, 'data-main' => $this
             <?php } ?>
         </tr>
         <?php } ?>
+		<tr>
+            <td colspan="<?php echo count($days) + 1; ?>" class="spacer">&nbsp;</td>
+        </tr>
     </table>
 		
 	<div id="bin" class="bin">
 		<br />
 		Drag meals here to cancel
 	</div>
-	<p>
-		<input type="submit" value="Show Shopping List for Selected Days" />
-	</p>
+	
 	</form>
 	
 	

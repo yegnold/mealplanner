@@ -11,7 +11,8 @@ define([
 		className: "bin",
 		events: {
 			'dragover'	: 'handleDragOver',
-			'drop'		: 'handleDrop'
+			'dragleave' : 'handleDragLeave',
+			'drop'		: 'handleDrop',
 		},
 		initialize: function() {
 			
@@ -28,10 +29,14 @@ define([
 			var transfer_data = e.originalEvent.dataTransfer.getData('text/plain');
 			if(transfer_data.match(/ScheduledMeal/)) {
 				e.preventDefault();
+				this.$el.addClass('active');
 				return false;
 			}
 			return true;
 			
+		},
+		handleDragLeave: function(e) {
+			this.$el.removeClass('active');
 		},
 		/**
 		 * Handle the drop of a ScheduledMeal instance on to this slot.
@@ -52,10 +57,12 @@ define([
 				var dropped_meal_parts = transfer_data.match(/ScheduledMeal:([0-9]+)$/);
 				var scheduled_meal_model = new ScheduledMeal({id: dropped_meal_parts[1]});
 				scheduled_meal_model.destroy();
+				this.$el.removeClass('active');
 				return true;
 			}
 			return false;
-		}
+		},
+		
 
 	});
 	// Return the view for the module

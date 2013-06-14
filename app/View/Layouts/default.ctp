@@ -7,8 +7,9 @@
 	</title>
 	<?php
 		echo $this->Html->meta('icon');
-        
-		echo $this->Html->css('cake.generic');
+    ?>
+	<link href='http://fonts.googleapis.com/css?family=Ruda:400,700' rel='stylesheet' type='text/css'>
+	<?php
         echo $this->Html->css('mealplanner');
 		echo $this->Html->css('mealplanner.print', null, array('media' => 'print'));
 
@@ -29,14 +30,9 @@
 			<?php echo $this->fetch('content'); ?>
 		</div>
 		<div id="footer">
-			<?php echo $this->Html->link(
-					$this->Html->image('cake.power.gif', array('alt' => 'Powered by CakePHP', 'border' => '0')),
-					'http://www.cakephp.org/',
-					array('target' => '_blank', 'escape' => false)
-				);
-			?>
+			
 		</div>
 	</div>
-	<?php echo $this->element('sql_dump'); ?>
+	<?php //echo $this->element('sql_dump'); ?>
 </body>
 </html>
